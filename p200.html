@@ -155,7 +155,7 @@
     background:var(--bg);
     color:var(--ink);
   }
-  .toolbar input[type="search"]{ flex:1 1 220px; min-width:0; }
+  .toolbar input[type="search"]{ flex:1 1 200px; min-width:0; }
   .toolbar .spacer{ flex:1 1 auto; }
   .btn{
     font:inherit;
@@ -254,7 +254,8 @@
     color:var(--placeholder-ink);
     background:var(--placeholder-bg);
   }
-  .machine-no{ font-family:var(--font-mono); font-weight:600; font-size:14.5px; }
+  /* 機台編號字體已縮小為 12.5px */
+  .machine-no{ font-family:var(--font-mono); font-weight:600; font-size:12.5px; }
 
   .status-pill-wrap select.cell-select{
     border-radius:999px;
@@ -432,7 +433,6 @@
 <body>
 <div id="app"></div>
 
-<!-- 保留原有初始資料，當雲端試算表為空時會自動將這批資料同步上去 -->
 <script id="default-data" type="application/json">[{"id":"m1","machineNo":"#1","serial":"RM06240601","projectNo":"RM2410601","location":"CP","swVersion":"v2.1.0.35","calibMethod":"平均校正_5x5","status":"normal","issue":"現場上封膠防塵，暫不需更換透鏡架構","updatedAt":"2026-11-11","history":[{"date":"2026-09-09","note":"建立機台資訊：軟體版次 v2.1.0.35，校正方式 平均校正_5x5"},{"date":"2026-09-11","note":"補齊設備序號與擺放位置；與 Willie 討論後，現場上封膠防塵，暫不需更換透鏡架構"},{"date":"2026-11-12","note":"2026/11/3 更換RS232 線材，解決電腦藍屏問題"}]},{"id":"m2","machineNo":"#2","serial":"RM06250401","projectNo":"RM2510601","location":"FT","swVersion":"v1.0.0.45","calibMethod":"單點校正_(短焦)5x5","status":"normal","issue":"需更換透鏡，時間待通知，需先備料","updatedAt":"2026-09-11","history":[{"date":"2026-09-09","note":"建立機台資訊：軟體版次 v1.0.0.45，校正方式 單點校正_(短焦)5x5"},{"date":"2026-09-11","note":"補齊設備序號與擺放位置；與 Willie 討論後，需更換透鏡，時間待通知，需先備料"}]},{"id":"m3","machineNo":"#3","serial":"RM06260301","projectNo":"RM2510603","location":"利揚 東城廠","swVersion":"v2.1.0.35","calibMethod":"平均校正_(短焦)5x5","status":"normal","issue":"現場上封膠防塵，暫不需更換透鏡架構","updatedAt":"2026-09-11","history":[{"date":"2026-09-09","note":"建立機台資訊：軟體版次 v2.1.0.35，校正方式 平均校正_(短焦)5x5"},{"date":"2026-09-11","note":"補齊設備序號與擺放位置；與 Willie 討論後，現場上封膠防塵，暫不需更換透鏡架構"}]},{"id":"m4","machineNo":"#4","serial":"RM06260302","projectNo":"RM2610601","location":"利揚 東城廠","swVersion":"v2.1.0.35","calibMethod":"平均校正_5x5","status":"normal","issue":"現場上封膠防塵，暫不需更換透鏡架構","updatedAt":"2026-09-11","history":[{"date":"2026-09-09","note":"建立機台資訊：軟體版次 v2.1.0.35，校正方式 平均校正_5x5"},{"date":"2026-09-11","note":"補齊設備序號與擺放位置；與 Willie 討論後，現場上封膠防塵，暫不需更換透鏡架構"}]},{"id":"m5","machineNo":"#5","serial":"RM06260303","projectNo":"RM2610602","location":"無錫偉測","swVersion":"v2.1.0.35","calibMethod":"平均校正_5x5","status":"normal","issue":"現場上封膠防塵，暫不需更換透鏡架構","updatedAt":"2026-09-11","history":[{"date":"2026-09-09","note":"建立機台資訊：軟體版次 v2.1.0.35，校正方式 平均校正_5x5"},{"date":"2026-09-11","note":"補齊設備序號與擺放位置；與 Willie 討論後，現場上封膠防塵，暫不需更換透鏡架構"}]},{"id":"m6","machineNo":"#6","serial":"RM06260304","projectNo":"RM2610603","location":"利揚 東城廠","swVersion":"v2.1.0.35","calibMethod":"平均校正_5x5","status":"normal","issue":"現場上封膠防塵，暫不需更換透鏡架構","updatedAt":"2026-09-11","history":[{"date":"2026-09-09","note":"建立機台資訊：軟體版次 v2.1.0.35，校正方式 平均校正_5x5"},{"date":"2026-09-11","note":"補齊設備序號與擺放位置；與 Willie 討論後，現場上封膠防塵，暫不需更換透鏡架構"}]},{"id":"mmwd4j0xhcjnb","machineNo":"#7","serial":"RM06260801","projectNo":"RM2610604","location":"無錫偉測","swVersion":"","calibMethod":"","status":"normal","issue":"透鏡有封膠防塵","updatedAt":"2026-11-12","history":[{"date":"2026-11-12","note":"建立機台紀錄"},{"date":"2026-11-12","note":"2026/10/26 裝機"}]},{"id":"mmwd4l7zw26js","machineNo":"#8","serial":"RM06260802","projectNo":"RM2610605","location":"利揚","swVersion":"","calibMethod":"","status":"","issue":"透鏡有封膠防塵","updatedAt":"2026-11-12","history":[{"date":"2026-11-12","note":"建立機台紀錄"}]},{"id":"mmwd4lz5e75y0","machineNo":"#9","serial":"RM06260803","projectNo":"RM2610606","location":"利揚","swVersion":"","calibMethod":"","status":"","issue":"透鏡有封膠防塵","updatedAt":"2026-11-12","history":[{"date":"2026-11-12","note":"建立機台紀錄"}]},{"id":"mmwd4mjd14pfm","machineNo":"#10","serial":"RM06260701","projectNo":"RM2610607","location":"利揚","swVersion":"","calibMethod":"","status":"","issue":"透鏡有封膠防塵","updatedAt":"2026-11-12","history":[{"date":"2026-11-12","note":"建立機台紀錄"}]},{"id":"mmwd4nddj75ni","machineNo":"#11","serial":"RM06260702","projectNo":"RM2610608","location":"無錫偉測","swVersion":"","calibMethod":"","status":"","issue":"透鏡有封膠防塵，出貨即PS-RS232線","updatedAt":"2026-11-16","history":[{"date":"2026-11-12","note":"建立機台紀錄"},{"date":"2026-11-12","note":"2026/11/16 裝機"}]},{"id":"mmwd4o3ocbaau","machineNo":"#12","serial":"RM06260703","projectNo":"RM2610609","location":"無錫偉測","swVersion":"","calibMethod":"","status":"","issue":"透鏡有封膠防塵，出貨即PS-RS232線","updatedAt":"2026-11-16","history":[{"date":"2026-11-12","note":"建立機台紀錄"}]}]</script>
 
 <script id="app-script">
@@ -474,7 +474,7 @@
   }
 
   var state = [];
-  var syncStatus = "loading"; // loading | synced | dirty | saving | error
+  var syncStatus = "loading";
   var syncMsg = "正在連線雲端資料庫...";
   var autoSaveTimer = null;
   var confirmDeleteId = null;
@@ -508,7 +508,6 @@
       .then(function(json){
         if(json.status === "ok" && Array.isArray(json.data)){
           if(json.data.length === 0 && fallback.length > 0){
-            // 若試算表剛建立還是空的，自動把原本的 12 台資料寫入雲端初始化
             state = fallback;
             setSyncState("saving", "首次啟動，正在將初始機台資料寫入 Google 試算表...");
             render();
@@ -623,6 +622,67 @@
     return html;
   }
 
+  /* 匯出所有設定與輸入值為 CSV 檔案（含 UTF-8 BOM 確保 Excel 開啟無亂碼） */
+  function exportToCSV(){
+    if(!state || state.length === 0){
+      showToast("目前沒有資料可匯出");
+      return;
+    }
+
+    var headers = [
+      "機台編號",
+      "設備序號",
+      "專案號",
+      "擺放位置",
+      "軟體版次",
+      "校正方式",
+      "目前設備狀態",
+      "待處理問題",
+      "設備履歷紀錄",
+      "資料更新日期"
+    ];
+
+    function csvCell(val){
+      var str = String(val == null ? "" : val);
+      return '"' + str.replace(/"/g, '""') + '"';
+    }
+
+    var lines = [headers.map(csvCell).join(",")];
+
+    state.forEach(function(r){
+      var statusLabel = (STATUS_MAP[r.status] && STATUS_MAP[r.status].label) ? STATUS_MAP[r.status].label : (r.status || "未設定");
+      var historyStr = Array.isArray(r.history) && r.history.length > 0
+        ? r.history.map(function(h){ return "[" + fmtDate(h.date) + "] " + (h.note || ""); }).join(" | ")
+        : "";
+
+      var rowCells = [
+        r.machineNo || "",
+        r.serial || "",
+        r.projectNo || "",
+        r.location || "",
+        r.swVersion || "",
+        r.calibMethod || "",
+        statusLabel,
+        r.issue || "",
+        historyStr,
+        r.updatedAt || ""
+      ];
+      lines.push(rowCells.map(csvCell).join(","));
+    });
+
+    var csvContent = "\uFEFF" + lines.join("\r\n");
+    var blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = "機台校正履歷_" + todayISO() + ".csv";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
+    showToast("已匯出 CSV 檔案（共 " + state.length + " 筆機台資料）");
+  }
+
   function render(){
     var stats = computeStats();
     var q = filters.q.trim().toLowerCase();
@@ -658,10 +718,11 @@
     html += '  <span class="spacer"></span>';
     html += '  <span class="save-status' + statusClsExtra + '" id="save-status">' + escText(syncMsg) + '</span>';
     html += '  <button class="btn" id="reload-btn" type="button">重新載入</button>';
+    html += '  <button class="btn" id="export-csv-btn" type="button">匯出 CSV</button>';
     html += '  <button class="btn" id="add-row-btn" type="button">＋ 新增機台</button>';
     html += '  <button class="btn primary" id="save-btn" type="button">立即同步儲存</button>';
     html += '</section>';
-    html += '<p class="hint">提示：修改欄位後停止輸入 1.5 秒即會自動儲存至雲端；若同時有多人編輯，可點「重新載入」取得最新資料。</p>';
+    html += '<p class="hint">提示：修改欄位後停止輸入 1.5 秒即會自動儲存至雲端；點選「匯出 CSV」可下載完整備份表格。</p>';
 
     html += '<div class="table-wrap">';
     if(syncStatus === "loading" && state.length === 0){
@@ -744,6 +805,10 @@
         clearTimeout(autoSaveTimer);
         loadInitialData();
       });
+    }
+    var exportCsvBtn = document.getElementById("export-csv-btn");
+    if(exportCsvBtn){
+      exportCsvBtn.addEventListener("click", exportToCSV);
     }
     var addBtn = document.getElementById("add-row-btn");
     if(addBtn){
