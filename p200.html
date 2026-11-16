@@ -9,507 +9,146 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700&amp;family=Noto+Sans+TC:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
 <style id="app-style">
   :root{
-    --bg:#eef2f3;
-    --surface:#ffffff;
-    --surface-alt:#e6ecee;
-    --border:#d2dadd;
-    --border-soft:#e2e8ea;
-    --ink:#182428;
-    --ink-soft:#5c6d73;
-    --ink-faint:#8a9aa0;
-    --accent:#2b6a73;
-    --accent-strong:#1f4f57;
-    --accent-soft:#e0eced;
-    --accent-ink:#ffffff;
-    --placeholder-bg:#fdf3da;
-    --placeholder-ink:#8a6a1f;
-    --danger:#a23333;
-    --danger-soft:#fbe4e4;
-
-    --st-normal-bg:#e2f2e6; --st-normal-ink:#1e6b3f;
-    --st-calib-bg:#e2edf5; --st-calib-ink:#275d82;
-    --st-pending-bg:#fbeed9; --st-pending-ink:#96591a;
-    --st-repair-bg:#f9e2e2; --st-repair-ink:#a23333;
-    --st-down-bg:#e6e8e9;  --st-down-ink:#54595c;
-
+    --bg:#eef2f3; --surface:#ffffff; --surface-alt:#e6ecee; --border:#d2dadd; --border-soft:#e2e8ea;
+    --ink:#182428; --ink-soft:#5c6d73; --ink-faint:#8a9aa0; --accent:#2b6a73; --accent-strong:#1f4f57;
+    --accent-soft:#e0eced; --accent-ink:#ffffff; --placeholder-bg:#fdf3da; --placeholder-ink:#8a6a1f;
+    --danger:#a23333; --danger-soft:#fbe4e4;
+    --st-normal-bg:#e2f2e6; --st-normal-ink:#1e6b3f; --st-calib-bg:#e2edf5; --st-calib-ink:#275d82;
+    --st-pending-bg:#fbeed9; --st-pending-ink:#96591a; --st-repair-bg:#f9e2e2; --st-repair-ink:#a23333;
+    --st-down-bg:#e6e8e9; --st-down-ink:#54595c;
     --font-display:'Noto Serif TC','Noto Serif',serif;
     --font-body:'Noto Sans TC','Noto Sans',system-ui,-apple-system,sans-serif;
     --font-mono:'IBM Plex Mono',ui-monospace,'SFMono-Regular',monospace;
   }
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
-      --bg:#12191b;
-      --surface:#182123;
-      --surface-alt:#1e282b;
-      --border:#2c383c;
-      --border-soft:#243034;
-      --ink:#e7edef;
-      --ink-soft:#98a8ad;
-      --ink-faint:#6c7d82;
-      --accent:#5fb6bf;
-      --accent-strong:#83cbd2;
-      --accent-soft:#1c343a;
-      --accent-ink:#08191c;
-      --placeholder-bg:#3a2f14;
-      --placeholder-ink:#e3b45c;
-      --danger:#e08a8a;
-      --danger-soft:#3a1c1c;
-
-      --st-normal-bg:#17301f; --st-normal-ink:#83dca0;
-      --st-calib-bg:#182c38;  --st-calib-ink:#8bc6e8;
-      --st-pending-bg:#3a2a10; --st-pending-ink:#f0b25c;
-      --st-repair-bg:#3a1c1c; --st-repair-ink:#f0a0a0;
-      --st-down-bg:#282e30;  --st-down-ink:#b9c1c4;
+      --bg:#12191b; --surface:#182123; --surface-alt:#1e282b; --border:#2c383c; --border-soft:#243034;
+      --ink:#e7edef; --ink-soft:#98a8ad; --ink-faint:#6c7d82; --accent:#5fb6bf; --accent-strong:#83cbd2;
+      --accent-soft:#1c343a; --accent-ink:#08191c; --placeholder-bg:#3a2f14; --placeholder-ink:#e3b45c;
+      --danger:#e08a8a; --danger-soft:#3a1c1c;
+      --st-normal-bg:#17301f; --st-normal-ink:#83dca0; --st-calib-bg:#182c38; --st-calib-ink:#8bc6e8;
+      --st-pending-bg:#3a2a10; --st-pending-ink:#f0b25c; --st-repair-bg:#3a1c1c; --st-repair-ink:#f0a0a0;
+      --st-down-bg:#282e30; --st-down-ink:#b9c1c4;
     }
   }
-
   *{box-sizing:border-box;}
-  body{
-    margin:0;
-    background:var(--bg);
-    color:var(--ink);
-    font-family:var(--font-body);
-    -webkit-font-smoothing:antialiased;
-  }
-  #app{
-    max-width:1220px;
-    margin:0 auto;
-    padding:28px 20px 64px;
-    display:flex;
-    flex-direction:column;
-    gap:20px;
-  }
-
-  header.hero{
-    display:flex;
-    flex-direction:column;
-    gap:14px;
-  }
-  .eyebrow{
-    font-family:var(--font-mono);
-    font-size:12px;
-    letter-spacing:.12em;
-    text-transform:uppercase;
-    color:var(--accent);
-  }
-  h1{
-    font-family:var(--font-display);
-    font-weight:700;
-    font-size:clamp(26px,4vw,34px);
-    margin:0;
-    text-wrap:balance;
-    letter-spacing:.01em;
-  }
-  .lede{
-    margin:0;
-    color:var(--ink-soft);
-    font-size:14.5px;
-    max-width:66ch;
-    line-height:1.6;
-  }
-
-  .stats{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-    gap:10px;
-  }
-  .stat{
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:10px;
-    padding:12px 14px;
-    display:flex;
-    flex-direction:column;
-    gap:4px;
-  }
-  .stat .num{
-    font-family:var(--font-mono);
-    font-variant-numeric:tabular-nums;
-    font-size:22px;
-    font-weight:600;
-    color:var(--ink);
-  }
+  body{ margin:0; background:var(--bg); color:var(--ink); font-family:var(--font-body); -webkit-font-smoothing:antialiased; }
+  #app{ max-width:1220px; margin:0 auto; padding:28px 20px 64px; display:flex; flex-direction:column; gap:20px; }
+  header.hero{ display:flex; flex-direction:column; gap:14px; }
+  .eyebrow{ font-family:var(--font-mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+  h1{ font-family:var(--font-display); font-weight:700; font-size:clamp(26px,4vw,34px); margin:0; text-wrap:balance; letter-spacing:.01em; }
+  .lede{ margin:0; color:var(--ink-soft); font-size:14.5px; max-width:66ch; line-height:1.6; }
+  .stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; }
+  .stat{ background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:12px 14px; display:flex; flex-direction:column; gap:4px; }
+  .stat .num{ font-family:var(--font-mono); font-variant-numeric:tabular-nums; font-size:22px; font-weight:600; color:var(--ink); }
   .stat.warn .num{ color:var(--st-pending-ink); }
-  .stat .label{
-    font-size:12px;
-    color:var(--ink-soft);
-  }
-
-  .toolbar{
-    display:flex;
-    flex-wrap:wrap;
-    align-items:center;
-    gap:10px;
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:10px;
-    padding:10px 12px;
-  }
-  .toolbar input[type="search"],
-  .toolbar select{
-    font:inherit;
-    font-size:13.5px;
-    padding:7px 10px;
-    border-radius:7px;
-    border:1px solid var(--border);
-    background:var(--bg);
-    color:var(--ink);
-  }
+  .stat .label{ font-size:12px; color:var(--ink-soft); }
+  .toolbar{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:10px 12px; }
+  .toolbar input[type="search"], .toolbar select{ font:inherit; font-size:13.5px; padding:7px 10px; border-radius:7px; border:1px solid var(--border); background:var(--bg); color:var(--ink); }
   .toolbar input[type="search"]{ flex:1 1 200px; min-width:0; }
   .toolbar .spacer{ flex:1 1 auto; }
-  .btn{
-    font:inherit;
-    font-size:13.5px;
-    font-weight:600;
-    padding:8px 14px;
-    border-radius:7px;
-    border:1px solid var(--border);
-    background:var(--surface);
-    color:var(--ink);
-    cursor:pointer;
-    white-space:nowrap;
-  }
+  .btn{ font:inherit; font-size:13.5px; font-weight:600; padding:8px 14px; border-radius:7px; border:1px solid var(--border); background:var(--surface); color:var(--ink); cursor:pointer; white-space:nowrap; }
   .btn:hover{ border-color:var(--accent); }
   .btn:disabled{ opacity:0.55; cursor:not-allowed; }
-  .btn:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
-    outline:2px solid var(--accent);
-    outline-offset:1px;
-  }
-  .btn.primary{
-    background:var(--accent);
-    border-color:var(--accent);
-    color:var(--accent-ink);
-  }
+  .btn:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{ outline:2px solid var(--accent); outline-offset:1px; }
+  .btn.primary{ background:var(--accent); border-color:var(--accent); color:var(--accent-ink); }
   .btn.primary:hover:not(:disabled){ background:var(--accent-strong); border-color:var(--accent-strong); }
-  .save-status{
-    font-size:12.5px;
-    color:var(--st-normal-ink);
-    font-family:var(--font-mono);
-  }
+  .save-status{ font-size:12.5px; color:var(--st-normal-ink); font-family:var(--font-mono); }
   .save-status.dirty{ color:var(--st-pending-ink); }
   .save-status.error{ color:var(--danger); }
-  .hint{
-    font-size:12.5px;
-    color:var(--ink-faint);
-    padding:0 2px;
-  }
-
-  .table-wrap{
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:12px;
-    overflow-x:auto;
-  }
-  table{
-    width:100%;
-    border-collapse:collapse;
-    min-width:1230px;
-    table-layout:fixed;
-  }
-  thead th{
-    text-align:left;
-    font-size:12px;
-    font-weight:600;
-    color:var(--ink-soft);
-    text-transform:uppercase;
-    letter-spacing:.05em;
-    padding:12px 10px;
-    background:var(--surface-alt);
-    border-bottom:1px solid var(--border);
-    white-space:nowrap;
-  }
-  tbody td{
-    padding:8px 10px;
-    border-bottom:1px solid var(--border-soft);
-    vertical-align:middle;
-  }
+  .hint{ font-size:12.5px; color:var(--ink-faint); padding:0 2px; }
+  .table-wrap{ background:var(--surface); border:1px solid var(--border); border-radius:12px; overflow-x:auto; }
+  table{ width:100%; border-collapse:collapse; min-width:1230px; table-layout:fixed; }
+  thead th{ text-align:left; font-size:12px; font-weight:600; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.05em; padding:12px 10px; background:var(--surface-alt); border-bottom:1px solid var(--border); white-space:nowrap; }
+  tbody td{ padding:8px 10px; border-bottom:1px solid var(--border-soft); vertical-align:middle; }
   tbody tr:last-child td{ border-bottom:none; }
   tbody tr.attention{ box-shadow:inset 3px 0 0 var(--st-repair-ink); }
-
-  .cell-input, .cell-select, .cell-textarea{
-    width:100%;
-    font:inherit;
-    font-size:13.5px;
-    color:var(--ink);
-    background:transparent;
-    border:1px solid transparent;
-    border-radius:6px;
-    padding:6px 7px;
-  }
+  .cell-input, .cell-select, .cell-textarea{ width:100%; font:inherit; font-size:13.5px; color:var(--ink); background:transparent; border:1px solid transparent; border-radius:6px; padding:6px 7px; }
   .cell-textarea{ resize:vertical; min-height:48px; font-family:var(--font-body); line-height:1.4; }
   .mono{ font-family:var(--font-mono); font-variant-numeric:tabular-nums; }
   .cell-input:hover, .cell-select:hover, .cell-textarea:hover{ border-color:var(--border); }
-  .cell-input:focus, .cell-select:focus, .cell-textarea:focus{
-    border-color:var(--accent);
-    background:var(--bg);
-    outline:none;
-  }
-  .cell-input.placeholder-empty, .cell-textarea.placeholder-empty{
-    font-style:italic;
-    color:var(--placeholder-ink);
-    background:var(--placeholder-bg);
-    border-radius:6px;
-  }
-  select.cell-select.placeholder-empty{
-    color:var(--placeholder-ink);
-    background:var(--placeholder-bg);
-  }
-  /* 機台編號字體已縮小為 12.5px */
+  .cell-input:focus, .cell-select:focus, .cell-textarea:focus{ border-color:var(--accent); background:var(--bg); outline:none; }
+  .cell-input.placeholder-empty, .cell-textarea.placeholder-empty{ font-style:italic; color:var(--placeholder-ink); background:var(--placeholder-bg); border-radius:6px; }
+  select.cell-select.placeholder-empty{ color:var(--placeholder-ink); background:var(--placeholder-bg); }
   .machine-no{ font-family:var(--font-mono); font-weight:600; font-size:12.5px; }
-
-  .status-pill-wrap select.cell-select{
-    border-radius:999px;
-    padding:6px 10px;
-    font-weight:600;
-    font-size:12.5px;
-    text-align:center;
-    appearance:none;
-    -webkit-appearance:none;
-    background-image:linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
-    background-position: calc(100% - 14px) 55%, calc(100% - 9px) 55%;
-    background-size:5px 5px, 5px 5px;
-    background-repeat:no-repeat;
-    padding-right:24px;
-  }
+  .status-pill-wrap select.cell-select{ border-radius:999px; padding:6px 24px 6px 10px; font-weight:600; font-size:12.5px; text-align:center; appearance:none; -webkit-appearance:none; background-image:linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%); background-position: calc(100% - 14px) 55%, calc(100% - 9px) 55%; background-size:5px 5px, 5px 5px; background-repeat:no-repeat; }
   .st-normal{ background:var(--st-normal-bg); color:var(--st-normal-ink); }
   .st-calibrating{ background:var(--st-calib-bg); color:var(--st-calib-ink); }
   .st-pending{ background:var(--st-pending-bg); color:var(--st-pending-ink); }
   .st-repair{ background:var(--st-repair-bg); color:var(--st-repair-ink); }
   .st-down{ background:var(--st-down-bg); color:var(--st-down-ink); }
   .st-blank{ background:var(--placeholder-bg); color:var(--placeholder-ink); }
-
   .history-log{ display:flex; flex-direction:column; gap:6px; }
-  .history-list{
-    max-height:96px;
-    overflow-y:auto;
-    display:flex;
-    flex-direction:column;
-    gap:5px;
-    padding-right:4px;
-    scrollbar-width:thin;
-  }
+  .history-list{ max-height:96px; overflow-y:auto; display:flex; flex-direction:column; gap:5px; padding-right:4px; scrollbar-width:thin; }
   .history-list::-webkit-scrollbar{ width:6px; }
   .history-list::-webkit-scrollbar-thumb{ background:var(--border); border-radius:3px; }
-  .history-list::-webkit-scrollbar-track{ background:transparent; }
-  .history-item{
-    font-size:12px;
-    line-height:1.45;
-    color:var(--ink-soft);
-    border-left:2px solid var(--border);
-    padding-left:7px;
-  }
-  .history-item .history-date{
-    font-family:var(--font-mono);
-    font-size:10.5px;
-    color:var(--ink-faint);
-    display:block;
-  }
+  .history-item{ font-size:12px; line-height:1.45; color:var(--ink-soft); border-left:2px solid var(--border); padding-left:7px; }
+  .history-item .history-date{ font-family:var(--font-mono); font-size:10.5px; color:var(--ink-faint); display:block; }
   .history-item .history-text{ color:var(--ink); }
-  .history-empty{
-    font-size:12px;
-    font-style:italic;
-    color:var(--ink-faint);
-  }
-  .history-add{
-    display:flex;
-    gap:5px;
-  }
-  .history-input{
-    flex:1 1 auto;
-    min-width:0;
-    font:inherit;
-    font-size:12.5px;
-    padding:5px 7px;
-    border-radius:6px;
-    border:1px solid var(--border);
-    background:var(--bg);
-    color:var(--ink);
-  }
-  .history-add-btn{
-    flex:0 0 auto;
-    font-size:12px;
-    font-weight:600;
-    padding:5px 10px;
-    border-radius:6px;
-    border:1px solid var(--accent);
-    background:var(--accent-soft);
-    color:var(--accent-strong);
-    cursor:pointer;
-  }
+  .history-empty{ font-size:12px; font-style:italic; color:var(--ink-faint); }
+  .history-add{ display:flex; gap:5px; }
+  .history-input{ flex:1 1 auto; min-width:0; font:inherit; font-size:12.5px; padding:5px 7px; border-radius:6px; border:1px solid var(--border); background:var(--bg); color:var(--ink); }
+  .history-add-btn{ flex:0 0 auto; font-size:12px; font-weight:600; padding:5px 10px; border-radius:6px; border:1px solid var(--accent); background:var(--accent-soft); color:var(--accent-strong); cursor:pointer; }
   .history-add-btn:hover{ background:var(--accent); color:var(--accent-ink); }
-
   .row-actions{ text-align:right; white-space:nowrap; }
-  .icon-btn{
-    border:1px solid transparent;
-    background:transparent;
-    color:var(--ink-faint);
-    border-radius:6px;
-    padding:6px 9px;
-    font-size:12.5px;
-    font-family:var(--font-body);
-    cursor:pointer;
-  }
+  .icon-btn{ border:1px solid transparent; background:transparent; color:var(--ink-faint); border-radius:6px; padding:6px 9px; font-size:12.5px; font-family:var(--font-body); cursor:pointer; }
   .icon-btn:hover{ color:var(--danger); border-color:var(--danger-soft); background:var(--danger-soft); }
-  .icon-btn.confirming{
-    color:#fff;
-    background:var(--danger);
-    border-color:var(--danger);
-    font-weight:600;
-  }
-
-  .legend{
-    display:flex;
-    flex-wrap:wrap;
-    gap:14px;
-    font-size:12px;
-    color:var(--ink-soft);
-    padding:2px 4px;
-  }
-  .legend .swatch{
-    display:inline-block;
-    width:10px;height:10px;
-    border-radius:3px;
-    margin-right:5px;
-    vertical-align:-1px;
-  }
-  .empty-note{
-    padding:30px;
-    text-align:center;
-    color:var(--ink-faint);
-    font-size:14px;
-  }
-
+  .icon-btn.confirming{ color:#fff; background:var(--danger); border-color:var(--danger); font-weight:600; }
+  .legend{ display:flex; flex-wrap:wrap; gap:14px; font-size:12px; color:var(--ink-soft); padding:2px 4px; }
+  .legend .swatch{ display:inline-block; width:10px; height:10px; border-radius:3px; margin-right:5px; vertical-align:-1px; }
+  .empty-note{ padding:30px; text-align:center; color:var(--ink-faint); font-size:14px; }
   @media (max-width:760px){
-    table, thead, tbody, tr, td{ display:block; width:100%; }
-    thead{ display:none; }
-    tbody tr{
-      border:1px solid var(--border);
-      border-radius:10px;
-      margin-bottom:12px;
-      padding:6px 4px;
-      background:var(--surface);
-    }
-    tbody tr.attention{ box-shadow:none; border-left:3px solid var(--st-repair-ink); }
-    table{ min-width:0; }
-    tbody td{
-      border-bottom:1px dashed var(--border-soft);
-      display:flex;
-      align-items:center;
-      gap:10px;
-      padding:9px 10px;
-    }
+    table, thead, tbody, tr, td{ display:block; width:100%; } thead{ display:none; }
+    tbody tr{ border:1px solid var(--border); border-radius:10px; margin-bottom:12px; padding:6px 4px; background:var(--surface); }
+    tbody tr.attention{ box-shadow:none; border-left:3px solid var(--st-repair-ink); } table{ min-width:0; }
+    tbody td{ border-bottom:1px dashed var(--border-soft); display:flex; align-items:center; gap:10px; padding:9px 10px; }
     tbody td:last-child{ border-bottom:none; }
-    tbody td::before{
-      content:attr(data-label);
-      flex:0 0 92px;
-      font-size:11.5px;
-      font-weight:600;
-      color:var(--ink-faint);
-      text-transform:uppercase;
-      letter-spacing:.04em;
-    }
-    .row-actions{ justify-content:flex-end; text-align:left; }
-    .row-actions::before{ content:""; flex:0 0 0; }
+    tbody td::before{ content:attr(data-label); flex:0 0 92px; font-size:11.5px; font-weight:600; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.04em; }
+    .row-actions{ justify-content:flex-end; text-align:left; } .row-actions::before{ content:""; flex:0 0 0; }
   }
-
-  .toast{
-    position:fixed;
-    left:50%;
-    bottom:24px;
-    transform:translateX(-50%) translateY(12px);
-    background:var(--ink);
-    color:var(--bg);
-    padding:10px 18px;
-    border-radius:999px;
-    font-size:13px;
-    opacity:0;
-    pointer-events:none;
-    transition:opacity .2s ease, transform .2s ease;
-    z-index:20;
-  }
+  .toast{ position:fixed; left:50%; bottom:24px; transform:translateX(-50%) translateY(12px); background:var(--ink); color:var(--bg); padding:10px 18px; border-radius:999px; font-size:13px; opacity:0; pointer-events:none; transition:opacity .2s ease, transform .2s ease; z-index:20; }
   .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
 </style>
 </head>
 <body>
 <div id="app"></div>
-
 <script id="default-data" type="application/json">[{"id":"m1","machineNo":"#1","serial":"RM06240601","projectNo":"RM2410601","location":"CP","swVersion":"v2.1.0.35","calibMethod":"平均校正_5x5","status":"normal","issue":"現場上封膠防塵，暫不需更換透鏡架構","updatedAt":"2026-11-11","history":[{"date":"2026-09-09","note":"建立機台資訊：軟體版次 v2.1.0.35，校正方式 平均校正_5x5"},{"date":"2026-09-11","note":"補齊設備序號與擺放位置；與 Willie 討論後，現場上封膠防塵，暫不需更換透鏡架構"},{"date":"2026-11-12","note":"2026/11/3 更換RS232 線材，解決電腦藍屏問題"}]},{"id":"m2","machineNo":"#2","serial":"RM06250401","projectNo":"RM2510601","location":"FT","swVersion":"v1.0.0.45","calibMethod":"單點校正_(短焦)5x5","status":"normal","issue":"需更換透鏡，時間待通知，需先備料","updatedAt":"2026-09-11","history":[{"date":"2026-09-09","note":"建立機台資訊：軟體版次 v1.0.0.45，校正方式 單點校正_(短焦)5x5"},{"date":"2026-09-11","note":"補齊設備序號與擺放位置；與 Willie 討論後，需更換透鏡，時間待通知，需先備料"}]},{"id":"m3","machineNo":"#3","serial":"RM06260301","projectNo":"RM2510603","location":"利揚 東城廠","swVersion":"v2.1.0.35","calibMethod":"平均校正_(短焦)5x5","status":"normal","issue":"現場上封膠防塵，暫不需更換透鏡架構","updatedAt":"2026-09-11","history":[{"date":"2026-09-09","note":"建立機台資訊：軟體版次 v2.1.0.35，校正方式 平均校正_(短焦)5x5"},{"date":"2026-09-11","note":"補齊設備序號與擺放位置；與 Willie 討論後，現場上封膠防塵，暫不需更換透鏡架構"}]},{"id":"m4","machineNo":"#4","serial":"RM06260302","projectNo":"RM2610601","location":"利揚 東城廠","swVersion":"v2.1.0.35","calibMethod":"平均校正_5x5","status":"normal","issue":"現場上封膠防塵，暫不需更換透鏡架構","updatedAt":"2026-09-11","history":[{"date":"2026-09-09","note":"建立機台資訊：軟體版次 v2.1.0.35，校正方式 平均校正_5x5"},{"date":"2026-09-11","note":"補齊設備序號與擺放位置；與 Willie 討論後，現場上封膠防塵，暫不需更換透鏡架構"}]},{"id":"m5","machineNo":"#5","serial":"RM06260303","projectNo":"RM2610602","location":"無錫偉測","swVersion":"v2.1.0.35","calibMethod":"平均校正_5x5","status":"normal","issue":"現場上封膠防塵，暫不需更換透鏡架構","updatedAt":"2026-09-11","history":[{"date":"2026-09-09","note":"建立機台資訊：軟體版次 v2.1.0.35，校正方式 平均校正_5x5"},{"date":"2026-09-11","note":"補齊設備序號與擺放位置；與 Willie 討論後，現場上封膠防塵，暫不需更換透鏡架構"}]},{"id":"m6","machineNo":"#6","serial":"RM06260304","projectNo":"RM2610603","location":"利揚 東城廠","swVersion":"v2.1.0.35","calibMethod":"平均校正_5x5","status":"normal","issue":"現場上封膠防塵，暫不需更換透鏡架構","updatedAt":"2026-09-11","history":[{"date":"2026-09-09","note":"建立機台資訊：軟體版次 v2.1.0.35，校正方式 平均校正_5x5"},{"date":"2026-09-11","note":"補齊設備序號與擺放位置；與 Willie 討論後，現場上封膠防塵，暫不需更換透鏡架構"}]},{"id":"mmwd4j0xhcjnb","machineNo":"#7","serial":"RM06260801","projectNo":"RM2610604","location":"無錫偉測","swVersion":"","calibMethod":"","status":"normal","issue":"透鏡有封膠防塵","updatedAt":"2026-11-12","history":[{"date":"2026-11-12","note":"建立機台紀錄"},{"date":"2026-11-12","note":"2026/10/26 裝機"}]},{"id":"mmwd4l7zw26js","machineNo":"#8","serial":"RM06260802","projectNo":"RM2610605","location":"利揚","swVersion":"","calibMethod":"","status":"","issue":"透鏡有封膠防塵","updatedAt":"2026-11-12","history":[{"date":"2026-11-12","note":"建立機台紀錄"}]},{"id":"mmwd4lz5e75y0","machineNo":"#9","serial":"RM06260803","projectNo":"RM2610606","location":"利揚","swVersion":"","calibMethod":"","status":"","issue":"透鏡有封膠防塵","updatedAt":"2026-11-12","history":[{"date":"2026-11-12","note":"建立機台紀錄"}]},{"id":"mmwd4mjd14pfm","machineNo":"#10","serial":"RM06260701","projectNo":"RM2610607","location":"利揚","swVersion":"","calibMethod":"","status":"","issue":"透鏡有封膠防塵","updatedAt":"2026-11-12","history":[{"date":"2026-11-12","note":"建立機台紀錄"}]},{"id":"mmwd4nddj75ni","machineNo":"#11","serial":"RM06260702","projectNo":"RM2610608","location":"無錫偉測","swVersion":"","calibMethod":"","status":"","issue":"透鏡有封膠防塵，出貨即PS-RS232線","updatedAt":"2026-11-16","history":[{"date":"2026-11-12","note":"建立機台紀錄"},{"date":"2026-11-12","note":"2026/11/16 裝機"}]},{"id":"mmwd4o3ocbaau","machineNo":"#12","serial":"RM06260703","projectNo":"RM2610609","location":"無錫偉測","swVersion":"","calibMethod":"","status":"","issue":"透鏡有封膠防塵，出貨即PS-RS232線","updatedAt":"2026-11-16","history":[{"date":"2026-11-12","note":"建立機台紀錄"}]}]</script>
-
 <script id="app-script">
 (function(){
   "use strict";
-
-  // ★ 請在下方引號內貼上你的 Google Apps Script 網頁應用程式網址 ★
   var GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxQx-1YOIMDFlfwtqGZm_-bjWsRGS2VTN_jg9pos8KDnEOP9iNSPhsz1fCW9bZKNXM5/exec";
-
   var STATUS_OPTIONS = [
-    { value:"normal",      label:"正常運作", cls:"st-normal" },
-    { value:"calibrating", label:"校正中",   cls:"st-calibrating" },
-    { value:"pending",     label:"待確認",   cls:"st-pending" },
-    { value:"repair",      label:"待維修",   cls:"st-repair" },
-    { value:"down",        label:"停機",     cls:"st-down" }
+    { value:"normal", label:"正常運作", cls:"st-normal" },
+    { value:"calibrating", label:"校正中", cls:"st-calibrating" },
+    { value:"pending", label:"待確認", cls:"st-pending" },
+    { value:"repair", label:"待維修", cls:"st-repair" },
+    { value:"down", label:"停機", cls:"st-down" }
   ];
   var STATUS_MAP = {};
   STATUS_OPTIONS.forEach(function(s){ STATUS_MAP[s.value] = s; });
-
   var CALIB_OPTIONS = ["平均校正_5x5", "單點校正_(短焦)5x5", "平均校正_(短焦)5x5"];
 
-  function escAttr(s){
-    return String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");
-  }
-  function escText(s){
-    return String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
-  }
+  function escAttr(s){ return String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;"); }
+  function escText(s){ return String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
   function uid(){ return "m" + Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
-  function todayISO(){
-    var d = new Date();
-    var tz = new Date(d.getTime() - d.getTimezoneOffset()*60000);
-    return tz.toISOString().slice(0,10);
-  }
-  function fmtDate(iso){
-    if(!iso) return "";
-    var p = iso.split("-");
-    if(p.length!==3) return iso;
-    return p[0] + "/" + parseInt(p[1],10) + "/" + parseInt(p[2],10);
-  }
+  function todayISO(){ var d = new Date(); return new Date(d.getTime() - d.getTimezoneOffset()*60000).toISOString().slice(0,10); }
+  function fmtDate(iso){ if(!iso) return ""; var p = iso.split("-"); return p.length===3 ? (p[0]+"/"+parseInt(p[1],10)+"/"+parseInt(p[2],10)) : iso; }
 
-  var state = [];
-  var syncStatus = "loading";
-  var syncMsg = "正在連線雲端資料庫...";
-  var autoSaveTimer = null;
-  var confirmDeleteId = null;
-  var confirmDeleteTimer = null;
-  var filters = { q:"", status:"" };
-
+  var state = [], syncStatus = "loading", syncMsg = "正在連線雲端資料庫...", autoSaveTimer = null, confirmDeleteId = null, confirmDeleteTimer = null, filters = { q:"", status:"" };
   var app = document.getElementById("app");
-
-  function isConfigured(){
-    return GAS_WEB_APP_URL && GAS_WEB_APP_URL.indexOf("https://script.google.com/") === 0;
-  }
 
   function loadInitialData(){
     var fallback = [];
-    try{
-      fallback = JSON.parse(document.getElementById("default-data").textContent) || [];
-    }catch(e){ fallback = []; }
-
-    if(!isConfigured()){
-      state = fallback;
-      setSyncState("error", "尚未設定 GAS 網址（目前僅顯示本機預設資料）");
-      render();
-      return;
-    }
-
+    try{ fallback = JSON.parse(document.getElementById("default-data").textContent) || []; }catch(e){}
     setSyncState("loading", "正在從 Google 試算表載入最新資料...");
     render();
-
     fetch(GAS_WEB_APP_URL)
       .then(function(res){ return res.json(); })
       .then(function(json){
         if(json.status === "ok" && Array.isArray(json.data)){
           if(json.data.length === 0 && fallback.length > 0){
             state = fallback;
-            setSyncState("saving", "首次啟動，正在將初始機台資料寫入 Google 試算表...");
+            setSyncState("saving", "首次啟動，正在將初始資料寫入 Google 試算表...");
             render();
             saveToCloud(true);
           } else {
@@ -517,11 +156,9 @@
             setSyncState("synced", "已與 Google 試算表同步");
             render();
           }
-        } else {
-          throw new Error(json.message || "回傳格式錯誤");
-        }
+        } else { throw new Error(json.message || "回傳格式錯誤"); }
       })
-      .catch(function(err){
+      .catch(function(){
         state = fallback;
         setSyncState("error", "雲端讀取失敗，暫時顯示備份資料");
         showToast("無法連線至 Google 試算表，請檢查 GAS 部署權限");
@@ -532,19 +169,12 @@
   function scheduleAutoSave(){
     setSyncState("dirty", "有未儲存的變更（1.5秒後自動同步）...");
     clearTimeout(autoSaveTimer);
-    autoSaveTimer = setTimeout(function(){
-      saveToCloud(false);
-    }, 1500);
+    autoSaveTimer = setTimeout(function(){ saveToCloud(false); }, 1500);
   }
 
   function saveToCloud(isInit){
     clearTimeout(autoSaveTimer);
-    if(!isConfigured()){
-      showToast("請先在 HTML 程式碼中填入 GAS_WEB_APP_URL");
-      return;
-    }
     setSyncState("saving", "正在儲存至 Google 試算表...");
-
     fetch(GAS_WEB_APP_URL, {
       method: "POST",
       headers: { "Content-Type": "text/plain;charset=utf-8" },
@@ -554,14 +184,10 @@
     .then(function(json){
       if(json.status === "ok"){
         var now = new Date();
-        var hh = String(now.getHours()).padStart(2, "0");
-        var mm = String(now.getMinutes()).padStart(2, "0");
-        var ss = String(now.getSeconds()).padStart(2, "0");
-        setSyncState("synced", "已儲存至雲端 (" + hh + ":" + mm + ":" + ss + ")");
+        var t = String(now.getHours()).padStart(2,"0")+":"+String(now.getMinutes()).padStart(2,"0")+":"+String(now.getSeconds()).padStart(2,"0");
+        setSyncState("synced", "已儲存至雲端 (" + t + ")");
         if(isInit) showToast("已自動將 12 筆機台資料初始化至 Google 試算表");
-      } else {
-        throw new Error(json.message || "寫入失敗");
-      }
+      } else { throw new Error(json.message || "寫入失敗"); }
     })
     .catch(function(err){
       setSyncState("error", "儲存失敗，請點「立即同步儲存」重試");
@@ -570,108 +196,50 @@
   }
 
   function setSyncState(status, msg){
-    syncStatus = status;
-    syncMsg = msg;
+    syncStatus = status; syncMsg = msg;
     var el = document.getElementById("save-status");
-    if(el){
-      el.textContent = msg;
-      el.className = "save-status" + (status === "dirty" || status === "saving" ? " dirty" : (status === "error" ? " error" : ""));
-    }
+    if(el){ el.textContent = msg; el.className = "save-status" + (status==="dirty"||status==="saving" ? " dirty" : (status==="error" ? " error" : "")); }
   }
 
   function nextMachineLabel(){
     var max = 0;
-    state.forEach(function(r){
-      var m = /#(\d+)/.exec(r.machineNo || "");
-      if(m){ max = Math.max(max, parseInt(m[1],10)); }
-    });
+    state.forEach(function(r){ var m = /#(\d+)/.exec(r.machineNo || ""); if(m) max = Math.max(max, parseInt(m[1],10)); });
     return "#" + (max + 1);
   }
 
-  function needsAttention(r){
-    return r.status === "repair" || r.status === "down" || (r.issue && r.issue.trim().length>0);
-  }
+  function needsAttention(r){ return r.status === "repair" || r.status === "down" || (r.issue && r.issue.trim().length>0); }
 
   function computeStats(){
-    var total = state.length;
-    var attention = state.filter(needsAttention).length;
     var lastUpdated = "";
     state.forEach(function(r){ if(r.updatedAt && r.updatedAt > lastUpdated) lastUpdated = r.updatedAt; });
-    return { total:total, attention:attention, lastUpdated:lastUpdated };
+    return { total:state.length, attention:state.filter(needsAttention).length, lastUpdated:lastUpdated };
   }
 
   function historyLogHTML(r){
     var items = Array.isArray(r.history) ? r.history.slice().reverse() : [];
-    var listHTML = items.length
-      ? items.map(function(h){
-          return '<div class="history-item"><span class="history-date">' + escText(fmtDate(h.date)) + '</span><span class="history-text">' + escText(h.note) + '</span></div>';
-        }).join('')
-      : '<div class="history-empty">尚無紀錄</div>';
-    var html = '<div class="history-log" data-hist="' + escAttr(r.id) + '">';
-    html += '<div class="history-list">' + listHTML + '</div>';
-    html += '<div class="history-add"><input type="text" class="history-input" data-hist-input="' + escAttr(r.id) + '" placeholder="新增一筆紀錄…"><button type="button" class="history-add-btn" data-hist-add="' + escAttr(r.id) + '">新增</button></div>';
-    html += '</div>';
-    return html;
+    var listHTML = items.length ? items.map(function(h){
+      return '<div class="history-item"><span class="history-date">' + escText(fmtDate(h.date)) + '</span><span class="history-text">' + escText(h.note) + '</span></div>';
+    }).join('') : '<div class="history-empty">尚無紀錄</div>';
+    return '<div class="history-log" data-hist="' + escAttr(r.id) + '"><div class="history-list">' + listHTML + '</div><div class="history-add"><input type="text" class="history-input" data-hist-input="' + escAttr(r.id) + '" placeholder="新增一筆紀錄…"><button type="button" class="history-add-btn" data-hist-add="' + escAttr(r.id) + '">新增</button></div></div>';
   }
 
   function optionsHTML(list, current){
     var html = '<option value="">— 未設定 —</option>';
-    list.forEach(function(opt){
-      html += '<option value="' + escAttr(opt.value) + '"' + (opt.value===current?" selected":"") + '>' + escText(opt.label) + "</option>";
-    });
+    list.forEach(function(opt){ html += '<option value="' + escAttr(opt.value) + '"' + (opt.value===current?" selected":"") + '>' + escText(opt.label) + "</option>"; });
     return html;
   }
 
-  /* 匯出所有設定與輸入值為 CSV 檔案（含 UTF-8 BOM 確保 Excel 開啟無亂碼） */
   function exportToCSV(){
-    if(!state || state.length === 0){
-      showToast("目前沒有資料可匯出");
-      return;
-    }
-
-    var headers = [
-      "機台編號",
-      "設備序號",
-      "專案號",
-      "擺放位置",
-      "軟體版次",
-      "校正方式",
-      "目前設備狀態",
-      "待處理問題",
-      "設備履歷紀錄",
-      "資料更新日期"
-    ];
-
-    function csvCell(val){
-      var str = String(val == null ? "" : val);
-      return '"' + str.replace(/"/g, '""') + '"';
-    }
-
+    if(!state || state.length === 0){ showToast("目前沒有資料可匯出"); return; }
+    var headers = ["機台編號","設備序號","專案號","擺放位置","軟體版次","校正方式","目前設備狀態","待處理問題","設備履歷紀錄","資料更新日期"];
+    function csvCell(val){ return '"' + String(val == null ? "" : val).replace(/"/g, '""') + '"'; }
     var lines = [headers.map(csvCell).join(",")];
-
     state.forEach(function(r){
       var statusLabel = (STATUS_MAP[r.status] && STATUS_MAP[r.status].label) ? STATUS_MAP[r.status].label : (r.status || "未設定");
-      var historyStr = Array.isArray(r.history) && r.history.length > 0
-        ? r.history.map(function(h){ return "[" + fmtDate(h.date) + "] " + (h.note || ""); }).join(" | ")
-        : "";
-
-      var rowCells = [
-        r.machineNo || "",
-        r.serial || "",
-        r.projectNo || "",
-        r.location || "",
-        r.swVersion || "",
-        r.calibMethod || "",
-        statusLabel,
-        r.issue || "",
-        historyStr,
-        r.updatedAt || ""
-      ];
-      lines.push(rowCells.map(csvCell).join(","));
+      var historyStr = Array.isArray(r.history) && r.history.length > 0 ? r.history.map(function(h){ return "[" + fmtDate(h.date) + "] " + (h.note || ""); }).join(" | ") : "";
+      lines.push([r.machineNo||"", r.serial||"", r.projectNo||"", r.location||"", r.swVersion||"", r.calibMethod||"", statusLabel, r.issue||"", historyStr, r.updatedAt||""].map(csvCell).join(","));
     });
-
-    var csvContent = "\uFEFF" + lines.join("\r\n");
-    var blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    var blob = new Blob(["\uFEFF" + lines.join("\r\n")], { type: "text/csv;charset=utf-8;" });
     var url = URL.createObjectURL(blob);
     var a = document.createElement("a");
     a.href = url;
@@ -689,42 +257,21 @@
     var visible = state.filter(function(r){
       var histText = (Array.isArray(r.history) ? r.history.map(function(h){ return h.note; }) : []).join(" ");
       var matchesQ = !q || [r.machineNo,r.serial,r.projectNo,r.location,histText].some(function(v){ return (v||"").toLowerCase().indexOf(q)>=0; });
-      var matchesStatus = !filters.status || r.status === filters.status;
-      return matchesQ && matchesStatus;
+      return matchesQ && (!filters.status || r.status === filters.status);
     });
-
     var statusClsExtra = (syncStatus === "dirty" || syncStatus === "saving") ? " dirty" : (syncStatus === "error" ? " error" : "");
 
-    var html = '';
-    html += '<header class="hero">';
-    html += '  <span class="eyebrow">EnliTech 客服部 · 設備追蹤（雲端多人協作版）</span>';
-    html += '  <h1>機台校正履歷</h1>';
-    html += '  <p class="lede">依機台分類記錄專案號、設備序號、擺放位置、校正方式與目前狀態。所有修改皆會自動同步儲存至 Google 試算表，供團隊成員即時查閱與更新。</p>';
-    html += '</header>';
+    var html = '<header class="hero"><span class="eyebrow">EnliTech 客服部 · 設備追蹤（雲端多人協作版）</span><h1>機台校正履歷</h1><p class="lede">依機台分類記錄專案號、設備序號、擺放位置、校正方式與目前狀態。所有修改皆會自動同步儲存至 Google 試算表，供團隊成員即時查閱與更新。</p></header>';
+    html += '<section class="stats"><div class="stat"><span class="num mono">' + stats.total + '</span><span class="label">機台總數</span></div><div class="stat' + (stats.attention>0 ? ' warn' : '') + '"><span class="num mono">' + stats.attention + '</span><span class="label">需留意（維修／停機／待處理）</span></div><div class="stat"><span class="num mono">' + (fmtDate(stats.lastUpdated) || "—") + '</span><span class="label">最後更新日期</span></div></section>';
+    html += '<section class="toolbar"><input type="search" id="search-input" placeholder="搜尋機台編號、序號、專案號或位置" value="' + escAttr(filters.q) + '"><select id="status-filter"><option value="">全部狀態</option>';
+    STATUS_OPTIONS.forEach(function(opt){ html += '<option value="' + escAttr(opt.value) + '"' + (filters.status===opt.value?" selected":"") + '>' + escText(opt.label) + '</option>'; });
+    html += '</select><span class="spacer"></span><span class="save-status' + statusClsExtra + '" id="save-status">' + escText(syncMsg) + '</span>';
+    html += '<button class="btn" id="reload-btn" type="button">重新載入</button>';
+    html += '<button class="btn" id="export-csv-btn" type="button">匯出 CSV</button>';
+    html += '<button class="btn" id="add-row-btn" type="button">＋ 新增機台</button>';
+    html += '<button class="btn primary" id="save-btn" type="button">立即同步儲存</button></section>';
+    html += '<p class="hint">提示：修改欄位後停止輸入 1.5 秒即會自動儲存至雲端；點選「匯出 CSV」可下載完整 Excel 相容表格。</p><div class="table-wrap">';
 
-    html += '<section class="stats">';
-    html += '  <div class="stat"><span class="num mono">' + stats.total + '</span><span class="label">機台總數</span></div>';
-    html += '  <div class="stat' + (stats.attention>0 ? ' warn' : '') + '"><span class="num mono">' + stats.attention + '</span><span class="label">需留意（維修／停機／待處理）</span></div>';
-    html += '  <div class="stat"><span class="num mono">' + (fmtDate(stats.lastUpdated) || "—") + '</span><span class="label">最後更新日期</span></div>';
-    html += '</section>';
-
-    html += '<section class="toolbar">';
-    html += '  <input type="search" id="search-input" placeholder="搜尋機台編號、序號、專案號或位置" value="' + escAttr(filters.q) + '">';
-    html += '  <select id="status-filter"><option value="">全部狀態</option>';
-    STATUS_OPTIONS.forEach(function(opt){
-      html += '<option value="' + escAttr(opt.value) + '"' + (filters.status===opt.value?" selected":"") + '>' + escText(opt.label) + '</option>';
-    });
-    html += '  </select>';
-    html += '  <span class="spacer"></span>';
-    html += '  <span class="save-status' + statusClsExtra + '" id="save-status">' + escText(syncMsg) + '</span>';
-    html += '  <button class="btn" id="reload-btn" type="button">重新載入</button>';
-    html += '  <button class="btn" id="export-csv-btn" type="button">匯出 CSV</button>';
-    html += '  <button class="btn" id="add-row-btn" type="button">＋ 新增機台</button>';
-    html += '  <button class="btn primary" id="save-btn" type="button">立即同步儲存</button>';
-    html += '</section>';
-    html += '<p class="hint">提示：修改欄位後停止輸入 1.5 秒即會自動儲存至雲端；點選「匯出 CSV」可下載完整備份表格。</p>';
-
-    html += '<div class="table-wrap">';
     if(syncStatus === "loading" && state.length === 0){
       html += '<div class="empty-note">正在從 Google 試算表載入機台資料，請稍候...</div>';
     } else if(visible.length === 0){
@@ -733,45 +280,28 @@
       html += '<table><colgroup>';
       [56,118,102,98,105,150,118,125,185,112,56].forEach(function(w){ html += '<col style="width:' + w + 'px">'; });
       html += '</colgroup><thead><tr>';
-      ["機台編號","設備序號","專案號","擺放位置","軟體版次","校正方式","目前設備狀態","待處理問題","設備履歷紀錄","資料更新日期",""].forEach(function(h){
-        html += '<th>' + escText(h) + '</th>';
-      });
+      ["機台編號","設備序號","專案號","擺放位置","軟體版次","校正方式","目前設備狀態","待處理問題","設備履歷紀錄","資料更新日期",""].forEach(function(h){ html += '<th>' + escText(h) + '</th>'; });
       html += '</tr></thead><tbody>';
       visible.forEach(function(r){
-        var att = needsAttention(r);
         var statusOpt = STATUS_MAP[r.status];
-        var statusCls = statusOpt ? statusOpt.cls : "st-blank";
-        html += '<tr data-id="' + escAttr(r.id) + '"' + (att ? ' class="attention"' : '') + '>';
-
+        html += '<tr data-id="' + escAttr(r.id) + '"' + (needsAttention(r) ? ' class="attention"' : '') + '>';
         html += '<td data-label="機台編號"><input class="cell-input mono machine-no" data-field="machineNo" value="' + escAttr(r.machineNo) + '"></td>';
         html += '<td data-label="設備序號"><input class="cell-input mono' + (r.serial? '' : ' placeholder-empty') + '" data-field="serial" placeholder="待補充" value="' + escAttr(r.serial) + '"></td>';
         html += '<td data-label="專案號"><input class="cell-input mono' + (r.projectNo? '' : ' placeholder-empty') + '" data-field="projectNo" placeholder="待補充" value="' + escAttr(r.projectNo) + '"></td>';
         html += '<td data-label="擺放位置"><input class="cell-input' + (r.location? '' : ' placeholder-empty') + '" data-field="location" placeholder="待補充" value="' + escAttr(r.location) + '"></td>';
         html += '<td data-label="軟體版次"><input class="cell-input mono' + (r.swVersion? '' : ' placeholder-empty') + '" data-field="swVersion" placeholder="待補充" value="' + escAttr(r.swVersion) + '"></td>';
         html += '<td data-label="校正方式"><input class="cell-input" list="calib-options" data-field="calibMethod" placeholder="待補充" value="' + escAttr(r.calibMethod) + '"></td>';
-        html += '<td data-label="目前設備狀態" class="status-pill-wrap"><select class="cell-select ' + statusCls + '" data-field="status">' + optionsHTML(STATUS_OPTIONS, r.status) + '</select></td>';
+        html += '<td data-label="目前設備狀態" class="status-pill-wrap"><select class="cell-select ' + (statusOpt ? statusOpt.cls : "st-blank") + '" data-field="status">' + optionsHTML(STATUS_OPTIONS, r.status) + '</select></td>';
         html += '<td data-label="待處理問題"><textarea class="cell-textarea' + (r.issue? '' : ' placeholder-empty') + '" data-field="issue" placeholder="待補充" rows="1">' + escText(r.issue) + '</textarea></td>';
         html += '<td data-label="設備履歷紀錄">' + historyLogHTML(r) + '</td>';
         html += '<td data-label="更新日期"><input type="date" class="cell-input mono" data-field="updatedAt" value="' + escAttr(r.updatedAt) + '"></td>';
-        html += '<td class="row-actions" data-label=""><button type="button" class="icon-btn' + (confirmDeleteId===r.id?' confirming':'') + '" data-del="' + escAttr(r.id) + '">' + (confirmDeleteId===r.id ? '確定刪除？' : '刪除') + '</button></td>';
-
-        html += '</tr>';
+        html += '<td class="row-actions" data-label=""><button type="button" class="icon-btn' + (confirmDeleteId===r.id?' confirming':'') + '" data-del="' + escAttr(r.id) + '">' + (confirmDeleteId===r.id ? '確定刪除？' : '刪除') + '</button></td></tr>';
       });
       html += '</tbody></table>';
     }
-    html += '</div>';
-
-    html += '<datalist id="calib-options">' + CALIB_OPTIONS.map(function(c){ return '<option value="' + escAttr(c) + '">'; }).join('') + '</datalist>';
-
-    html += '<div class="legend">';
-    STATUS_OPTIONS.forEach(function(opt){
-      html += '<span><span class="swatch ' + opt.cls + '"></span>' + escText(opt.label) + '</span>';
-    });
-    html += '  <span><span class="swatch" style="background:var(--placeholder-bg)"></span>待補充欄位</span>';
-    html += '</div>';
-
-    html += '<div class="toast" id="toast"></div>';
-
+    html += '</div><datalist id="calib-options">' + CALIB_OPTIONS.map(function(c){ return '<option value="' + escAttr(c) + '">'; }).join('') + '</datalist><div class="legend">';
+    STATUS_OPTIONS.forEach(function(opt){ html += '<span><span class="swatch ' + opt.cls + '"></span>' + escText(opt.label) + '</span>'; });
+    html += '<span><span class="swatch" style="background:var(--placeholder-bg)"></span>待補充欄位</span></div><div class="toast" id="toast"></div>';
     app.innerHTML = html;
     bindEvents();
   }
@@ -779,65 +309,39 @@
   function showToast(msg){
     var t = document.getElementById("toast");
     if(!t) return;
-    t.textContent = msg;
-    t.classList.add("show");
-    clearTimeout(t._timer);
-    t._timer = setTimeout(function(){ t.classList.remove("show"); }, 3000);
+    t.textContent = msg; t.classList.add("show");
+    clearTimeout(t._timer); t._timer = setTimeout(function(){ t.classList.remove("show"); }, 3000);
   }
 
-  function findRow(id){
-    for(var i=0;i<state.length;i++){ if(state[i].id===id) return state[i]; }
-    return null;
-  }
+  function findRow(id){ for(var i=0;i<state.length;i++){ if(state[i].id===id) return state[i]; } return null; }
 
   function bindEvents(){
     var search = document.getElementById("search-input");
-    if(search){
-      search.addEventListener("input", function(){ filters.q = search.value; render(); preserveFocus(search); });
-    }
+    if(search) search.addEventListener("input", function(){ filters.q = search.value; render(); preserveFocus(search); });
     var statusFilter = document.getElementById("status-filter");
-    if(statusFilter){
-      statusFilter.addEventListener("change", function(){ filters.status = statusFilter.value; render(); });
-    }
+    if(statusFilter) statusFilter.addEventListener("change", function(){ filters.status = statusFilter.value; render(); });
     var reloadBtn = document.getElementById("reload-btn");
-    if(reloadBtn){
-      reloadBtn.addEventListener("click", function(){
-        clearTimeout(autoSaveTimer);
-        loadInitialData();
-      });
-    }
+    if(reloadBtn) reloadBtn.addEventListener("click", function(){ clearTimeout(autoSaveTimer); loadInitialData(); });
     var exportCsvBtn = document.getElementById("export-csv-btn");
-    if(exportCsvBtn){
-      exportCsvBtn.addEventListener("click", exportToCSV);
-    }
+    if(exportCsvBtn) exportCsvBtn.addEventListener("click", exportToCSV);
     var addBtn = document.getElementById("add-row-btn");
-    if(addBtn){
-      addBtn.addEventListener("click", function(){
-        var row = { id:uid(), machineNo:nextMachineLabel(), serial:"", projectNo:"", location:"", swVersion:"", calibMethod:"", status:"", issue:"", updatedAt: todayISO(), history:[{date:todayISO(), note:"建立機台紀錄"}] };
-        state.push(row);
-        render();
-        saveToCloud(false);
-      });
-    }
+    if(addBtn) addBtn.addEventListener("click", function(){
+      state.push({ id:uid(), machineNo:nextMachineLabel(), serial:"", projectNo:"", location:"", swVersion:"", calibMethod:"", status:"", issue:"", updatedAt: todayISO(), history:[{date:todayISO(), note:"建立機台紀錄"}] });
+      render(); saveToCloud(false);
+    });
     var saveBtn = document.getElementById("save-btn");
-    if(saveBtn){
-      saveBtn.addEventListener("click", function(){ saveToCloud(false); });
-    }
+    if(saveBtn) saveBtn.addEventListener("click", function(){ saveToCloud(false); });
 
     app.querySelectorAll("tbody tr").forEach(function(tr){
       var id = tr.getAttribute("data-id");
       tr.querySelectorAll("[data-field]").forEach(function(el){
         var field = el.getAttribute("data-field");
-        var evt = (el.tagName === "SELECT" || el.type === "date") ? "change" : "input";
-        el.addEventListener(evt, function(){
+        el.addEventListener((el.tagName === "SELECT" || el.type === "date") ? "change" : "input", function(){
           var row = findRow(id);
           if(!row) return;
           row[field] = el.value;
           scheduleAutoSave();
-
-          if(field === "serial" || field === "projectNo" || field === "location" || field === "swVersion" || field === "issue"){
-            el.classList.toggle("placeholder-empty", !el.value);
-          }
+          if(["serial","projectNo","location","swVersion","issue"].indexOf(field) >= 0) el.classList.toggle("placeholder-empty", !el.value);
           if(field === "status"){
             STATUS_OPTIONS.forEach(function(o){ el.classList.remove(o.cls); });
             el.classList.remove("st-blank");
@@ -846,34 +350,23 @@
           }
         });
       });
-
-      var histInput = tr.querySelector("[data-hist-input]");
-      var histBtn = tr.querySelector("[data-hist-add]");
+      var histInput = tr.querySelector("[data-hist-input]"), histBtn = tr.querySelector("[data-hist-add]");
       if(histInput && histBtn){
         var doAppend = function(){ appendHistory(id, histInput); };
         histBtn.addEventListener("click", doAppend);
-        histInput.addEventListener("keydown", function(e){
-          if(e.key === "Enter"){ e.preventDefault(); doAppend(); }
-        });
+        histInput.addEventListener("keydown", function(e){ if(e.key === "Enter"){ e.preventDefault(); doAppend(); } });
       }
-
       var delBtn = tr.querySelector("[data-del]");
-      if(delBtn){
-        delBtn.addEventListener("click", function(){
-          if(confirmDeleteId === id){
-            state = state.filter(function(r){ return r.id !== id; });
-            confirmDeleteId = null;
-            clearTimeout(confirmDeleteTimer);
-            render();
-            saveToCloud(false);
-          } else {
-            confirmDeleteId = id;
-            clearTimeout(confirmDeleteTimer);
-            confirmDeleteTimer = setTimeout(function(){ confirmDeleteId = null; render(); }, 3000);
-            render();
-          }
-        });
-      }
+      if(delBtn) delBtn.addEventListener("click", function(){
+        if(confirmDeleteId === id){
+          state = state.filter(function(r){ return r.id !== id; });
+          confirmDeleteId = null; clearTimeout(confirmDeleteTimer); render(); saveToCloud(false);
+        } else {
+          confirmDeleteId = id; clearTimeout(confirmDeleteTimer);
+          confirmDeleteTimer = setTimeout(function(){ confirmDeleteId = null; render(); }, 3000);
+          render();
+        }
+      });
     });
   }
 
@@ -886,25 +379,17 @@
     var entry = { date: todayISO(), note: text };
     row.history.push(entry);
     inputEl.value = "";
-
     var wrap = app.querySelector('.history-log[data-hist="' + rowId.replace(/"/g,'\\"') + '"]');
     if(wrap){
       var list = wrap.querySelector(".history-list");
       if(list){
         var emptyNote = list.querySelector(".history-empty");
         if(emptyNote) emptyNote.remove();
-        var item = document.createElement("div");
-        item.className = "history-item";
-        var dateSpan = document.createElement("span");
-        dateSpan.className = "history-date";
-        dateSpan.textContent = fmtDate(entry.date);
-        var textSpan = document.createElement("span");
-        textSpan.className = "history-text";
-        textSpan.textContent = entry.note;
-        item.appendChild(dateSpan);
-        item.appendChild(textSpan);
-        list.insertBefore(item, list.firstChild);
-        list.scrollTop = 0;
+        var item = document.createElement("div"); item.className = "history-item";
+        var dSpan = document.createElement("span"); dSpan.className = "history-date"; dSpan.textContent = fmtDate(entry.date);
+        var tSpan = document.createElement("span"); tSpan.className = "history-text"; tSpan.textContent = entry.note;
+        item.appendChild(dSpan); item.appendChild(tSpan);
+        list.insertBefore(item, list.firstChild); list.scrollTop = 0;
       }
     }
     inputEl.focus();
@@ -913,19 +398,10 @@
 
   function preserveFocus(el){
     var pos = el.value.length;
-    setTimeout(function(){
-      var again = document.getElementById(el.id);
-      if(again){ again.focus(); again.setSelectionRange(pos,pos); }
-    },0);
+    setTimeout(function(){ var again = document.getElementById(el.id); if(again){ again.focus(); again.setSelectionRange(pos,pos); } }, 0);
   }
 
-  window.addEventListener("beforeunload", function(e){
-    if(syncStatus === "dirty" || syncStatus === "saving"){
-      e.preventDefault();
-      e.returnValue = "";
-    }
-  });
-
+  window.addEventListener("beforeunload", function(e){ if(syncStatus === "dirty" || syncStatus === "saving"){ e.preventDefault(); e.returnValue = ""; } });
   loadInitialData();
 })();
 </script>
